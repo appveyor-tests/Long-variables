@@ -22,6 +22,8 @@ init:
   - ps: 'Write-Host "APPVEYOR_BUILD_WORKER_CLOUD: $env:APPVEYOR_BUILD_WORKER_CLOUD"'
 
 test_script:
+  - sh: echo "account_like length ${#account_like}"
+  - sh: echo "secure_account_like length ${#secure_account_like}"
   - sh: |
       echo "var999 length is ${#var999}"
       if [ ${#var999} -ne 999 ]; then  echo "length of variable var999 is not equal to 999"; exit 10; fi
@@ -84,35 +86,74 @@ test_script:
   - ps: $should_exit=$false
   - ps: |
       echo "var999 length is $($env:var999.length)"
-      if ($($env:var999.length) -ne 999) { 
+      if ($($env:var999.length) -ne 999) {
         Write-Host -ForegroundColor red "length of variable var999 is not equal to 999"
         $should_exit=$true
       }
   - ps: |
       echo "var1024 length is $($env:var1024.length)"
-      if ($($env:var1024.length) -ne 1024) { 
+      if ($($env:var1024.length) -ne 1024) {
         Write-Host -ForegroundColor red "length of variable var1024 is not equal to 1024"
         $should_exit=$true
       }
   - ps: |
       echo "var1100 length is $($env:var1100.length)"
-      if ($($env:var1100.length) -ne 1100) { 
+      if ($($env:var1100.length) -ne 1100) {
         Write-Host -ForegroundColor red "length of variable var110 is not equal to 1100"
         $should_exit=$true
       }
   - ps: |
       echo "var2048 length is $($env:var2048.length)"
-      if ($($env:var2048.length) -ne 2048) { 
+      if ($($env:var2048.length) -ne 2048) {
         Write-Host -ForegroundColor red "length of variable var2048 is not equal to 2048"
         $should_exit=$true
       }
   - ps: |
       echo "var3072 length is $($env:var3072.length)"
-      if ($($env:var3072.length) -ne 3072) { 
+      if ($($env:var3072.length) -ne 3072) {
         Write-Host -ForegroundColor red "length of variable var3072 is not equal to 3072"
         $should_exit=$true
       }
-  - ps: if ($should_exit) { exit 10; }
+
+  - ps: |
+      echo "ui_var1024 length is $($env:ui_var1024.length)"
+      if ($($env:ui_var1024.length) -ne 1024) {
+        Write-Host -ForegroundColor red "length of variable ui_var1024 is not equal to 1024"
+        $should_exit=$true
+      }
+  - ps: |
+      echo "ui_var2048 length is $($env:ui_var2048.length)"
+      if ($($env:ui_var2048.length) -ne 2048) {
+        Write-Host -ForegroundColor red "length of variable ui_var2048 is not equal to 2048"
+        $should_exit=$true
+      }
+  - ps: |
+      echo "ui_var3072 length is $($env:ui_var3072.length)"
+      if ($($env:ui_var3072.length) -ne 3072) {
+        Write-Host -ForegroundColor red "length of variable ui_var3072 is not equal to 3072"
+        $should_exit=$true
+      }
+
+  - ps: |
+      echo "secure_ui_var1024 length is $($env:secure_ui_var1024.length)"
+      if ($($env:secure_ui_var1024.length) -ne 1024) {
+        Write-Host -ForegroundColor red "length of variable secure_ui_var1024 is not equal to 1024"
+        $should_exit=$true
+      }
+  - ps: |
+      echo "secure_ui_var2048 length is $($env:secure_ui_var2048.length)"
+      if ($($env:secure_ui_var2048.length) -ne 2048) {
+        Write-Host -ForegroundColor red "length of variable secure_ui_var2048 is not equal to 2048"
+        $should_exit=$true
+      }
+  - ps: |
+      echo "secure_ui_var3072 length is $($env:secure_ui_var3072.length)"
+      if ($($env:secure_ui_var3072.length) -ne 3072) {
+        Write-Host -ForegroundColor red "length of variable secure_ui_var3072 is not equal to 3072"
+        $should_exit=$true
+      }
+
+  - ps: if ($should_exit) {exit 10; }
 
 build: off
 
