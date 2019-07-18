@@ -23,6 +23,10 @@ init:
 
 test_script:
   - sh: |
+      echo $json
+      echo "json length is ${#json}"
+      if [ ${#json} -ne 2403 ]; then  echo "length of variable json is not equal to 2403"; exit 10; fi
+  - sh: |
       echo $account_like
       echo "account_like length is ${#account_like}"
       if [ ${#account_like} -ne 2423 ]; then  echo "length of variable account_like is not equal to 2423"; exit 10; fi
@@ -92,14 +96,14 @@ test_script:
 
   - ps: $should_exit=$false
   - ps: |
-      Write-Host -BackgroundColor red $account_like
+      Write-Host -BackgroundColor red $env:account_like
       echo "account_like length is $($env:account_like.length)"
       if ($($env:account_like.length) -ne 2423) {
         Write-Host -ForegroundColor red "length of variable account_like is not equal to 999"
         $should_exit=$true
       }
   - ps: |
-      Write-Host -BackgroundColor red $secure_account_like
+      Write-Host -BackgroundColor red $env:secure_account_like
       echo "secure_account_like length is $($env:secure_account_like.length)"
       if ($($env:secure_account_like.length) -ne 2423) {
         Write-Host -ForegroundColor red "length of variable secure_account_like is not equal to 999"
