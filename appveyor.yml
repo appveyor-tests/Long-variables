@@ -18,21 +18,26 @@ init:
   - ps: 'Write-Host "APPVEYOR_BUILD_WORKER_CLOUD: $env:APPVEYOR_BUILD_WORKER_CLOUD"'
 
 test_script:
+  - ps: $should_exit=false
   - ps: |
       echo "var999 length is $($env:var999.length)"
       if ($($env:var999.length) -ne 999) { 
-        Write-Host -ForegroundColor red "length of variable var999 is not equal to 999" 
+        Write-Host -ForegroundColor red "length of variable var999 is not equal to 999"
+        $should_exit=true
       }
   - ps: |
       echo "var1024 length is $($env:var1024.length)"
       if ($($env:var1024.length) -ne 1024) { 
-        Write-Host -ForegroundColor red "length of variable var1024 is not equal to 1024" 
+        Write-Host -ForegroundColor red "length of variable var1024 is not equal to 1024"
+        $should_exit=true
       }
   - ps: |
       echo "var1100 length is $($env:var1100.length)"
-      if ($($env:var110.length) -ne 1100) { 
-        Write-Host -ForegroundColor red "length of variable var110 is not equal to 1100" 
+      if ($($env:var1100.length) -ne 1100) { 
+        Write-Host -ForegroundColor red "length of variable var110 is not equal to 1100"
+        $should_exit=true
       }
+  - ps: if ($should_exit) { exit 10; }
 
 build: off
 
