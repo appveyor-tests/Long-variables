@@ -12,7 +12,6 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Previous Ubuntu1804
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017 Preview
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019 Preview
 
 init:
